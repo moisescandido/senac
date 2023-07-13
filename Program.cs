@@ -3,7 +3,12 @@ using senac.Data;
 using senac.Repository;
 using senac.Repository.Interfaces;
 
-string connection = "Server=localhost;Port=3306;Database=dbLoki;Uid=moises;Pwd=root;";
+IConfigurationRoot configuration = new ConfigurationBuilder()
+                                        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                                        .AddJsonFile("appsettings.json")
+                                        .Build();
+
+string connection = configuration.GetConnectionString("MySql");
 
 var builder = WebApplication.CreateBuilder(args);
 
