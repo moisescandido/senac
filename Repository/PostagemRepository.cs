@@ -96,8 +96,7 @@ namespace senac.Repository
         {
             try
             {
-                IEnumerable<ComentarioModel> comentarios = db.Comentario.Where(x => x.IdPostagem == id);
-                return comentarios;
+                return db.Comentario.Where(x => x.IdPostagem == id);
             }
             catch
             {
@@ -109,28 +108,21 @@ namespace senac.Repository
         {
             try
             {
-                var query = from postagem in db.Postagem
-                            join usuario in db.Usuario on postagem.IdUsuario equals usuario.Id
-                            join categoria in db.Categoria on postagem.IdCategoria equals categoria.Id
-                            where postagem.Id == id
-                            select new
-                            {
-                                IdPostagem = postagem.Id,
-                                IdUsuario = postagem.IdUsuario,
-                                IdCategoria = postagem.IdCategoria,
-                                Categoria = categoria.Nome,
-                                Usuario = usuario.Nome,
-                                Titulo = postagem.Titulo,
-                                Conteudo = postagem.Conteudo,
-                                DataCriacao = postagem.DataCriacao
-                            };
-
-                if (query is null)
-                {
-                    return null;
-                }
-
-                return query;
+                return from postagem in db.Postagem
+                       join usuario in db.Usuario on postagem.IdUsuario equals usuario.Id
+                       join categoria in db.Categoria on postagem.IdCategoria equals categoria.Id
+                       where postagem.Id == id
+                       select new
+                       {
+                           IdPostagem = postagem.Id,
+                           IdUsuario = postagem.IdUsuario,
+                           IdCategoria = postagem.IdCategoria,
+                           Categoria = categoria.Nome,
+                           Usuario = usuario.Nome,
+                           Titulo = postagem.Titulo,
+                           Conteudo = postagem.Conteudo,
+                           DataCriacao = postagem.DataCriacao
+                       };
             }
             catch
             {
@@ -144,43 +136,40 @@ namespace senac.Repository
             {
                 if (id == null)
                 {
-                    var query = from postagem in db.Postagem
-                                join usuario in db.Usuario on postagem.IdUsuario equals usuario.Id
-                                join categoria in db.Categoria on postagem.IdCategoria equals categoria.Id
-                                orderby postagem.DataCriacao descending
-                                select new
-                                {
-                                    IdPostagem = postagem.Id,
-                                    IdUsuario = postagem.IdUsuario,
-                                    IdCategoria = postagem.IdCategoria,
-                                    Categoria = categoria.Nome,
-                                    Usuario = usuario.Nome,
-                                    Titulo = postagem.Titulo,
-                                    Conteudo = postagem.Conteudo,
-                                    DataCriacao = postagem.DataCriacao
-                                };
-                    return query;
+                    return from postagem in db.Postagem
+                           join usuario in db.Usuario on postagem.IdUsuario equals usuario.Id
+                           join categoria in db.Categoria on postagem.IdCategoria equals categoria.Id
+                           orderby postagem.DataCriacao descending
+                           select new
+                           {
+                               IdPostagem = postagem.Id,
+                               IdUsuario = postagem.IdUsuario,
+                               IdCategoria = postagem.IdCategoria,
+                               Categoria = categoria.Nome,
+                               Usuario = usuario.Nome,
+                               Titulo = postagem.Titulo,
+                               Conteudo = postagem.Conteudo,
+                               DataCriacao = postagem.DataCriacao
+                           };
                 }
                 else
                 {
-                    var query = from postagem in db.Postagem
-                                join usuario in db.Usuario on postagem.IdUsuario equals usuario.Id
-                                join categoria in db.Categoria on postagem.IdCategoria equals categoria.Id
-                                where usuario.Id == id
-                                orderby postagem.DataCriacao descending
-                                select new
-                                {
-                                    IdPostagem = postagem.Id,
-                                    IdUsuario = postagem.IdUsuario,
-                                    IdCategoria = postagem.IdCategoria,
-                                    Categoria = categoria.Nome,
-                                    Usuario = usuario.Nome,
-                                    Titulo = postagem.Titulo,
-                                    Conteudo = postagem.Conteudo,
-                                    DataCriacao = postagem.DataCriacao
-                                };
-
-                    return query;
+                    return from postagem in db.Postagem
+                           join usuario in db.Usuario on postagem.IdUsuario equals usuario.Id
+                           join categoria in db.Categoria on postagem.IdCategoria equals categoria.Id
+                           where usuario.Id == id
+                           orderby postagem.DataCriacao descending
+                           select new
+                           {
+                               IdPostagem = postagem.Id,
+                               IdUsuario = postagem.IdUsuario,
+                               IdCategoria = postagem.IdCategoria,
+                               Categoria = categoria.Nome,
+                               Usuario = usuario.Nome,
+                               Titulo = postagem.Titulo,
+                               Conteudo = postagem.Conteudo,
+                               DataCriacao = postagem.DataCriacao
+                           };
                 }
             }
             catch
@@ -193,8 +182,7 @@ namespace senac.Repository
         {
             try
             {
-                IEnumerable<CategoriaModel> categoria = db.Categoria.ToList().AsEnumerable();
-                return categoria;
+                return db.Categoria.ToList().AsEnumerable();
             }
             catch
             {
