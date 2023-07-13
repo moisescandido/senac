@@ -78,8 +78,7 @@ namespace senac.Repository
         {
             try
             {
-                UsuarioModel? usuario = db.Usuario.FirstOrDefault(x => x.Nome == nome);
-                return usuario;
+                return db.Usuario.FirstOrDefault(x => x.Nome == nome);
             }
             catch
             {
@@ -108,8 +107,7 @@ namespace senac.Repository
         {
             try
             {
-                UsuarioModel? usuario = db.Usuario.FirstOrDefault(x => x.Email == email && x.Senha == senha);
-                return usuario;
+                return db.Usuario.FirstOrDefault(x => x.Email == email && x.Senha == senha);
             }
             catch
             {
