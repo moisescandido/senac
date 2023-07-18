@@ -1,9 +1,8 @@
-import { Home } from "./Home";
-
+import { Login } from "./pages/Login";
 const AppRoutes = [
   {
     path: '/',
-    element: <Home />
+    element: <Login />
   }
 ];
 
